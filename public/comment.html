@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<link rel="stylesheet" href="CSS/feebacks.css" type="text/css" />
+<link rel="stylesheet" href="CSS/jquery-ui-1.8.22.custom.css" type="text/css"/>
+<script type="text/javascript" src="Scripts/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="Scripts/jquery-ui-1.8.22.custom.min.js"></script>
+<script type="text/javascript" src="Scripts/combo.js"></script>
+<script type="text/javascript" src="Scripts/easing.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#datepick').click().datepicker();
+    
+});
+
+</script>
+<style>
+td{ border-right:1px solid #CCC;font-weight:bolder; font-size:12px; color:#424042; text-align:center;}
+.header a{ text-decoration:none; color:#333333;} 
+#action1{
+	position:absolute;
+	left: 634px;
+	top: 447px;
+	width: 16px;
+	height: 16px;
+}
+</style>
+<title>Feedbacks</title>
+</head>
+<div class="header"><br /><br /><a href="Shout.html">
+<h1><span id="custom">Voice of the Customer</span> Dashboard</h1></a>
+<div id="topContent">
+<ul>
+<li><a href="#">Account&nbsp;&nbsp;&nbsp;<span id="pipe">|</span></a></li>
+<li><a href="#">&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;<span id="pipe">|</span></a></li>
+<li><a href="index.html"  class="last"  >&nbsp;&nbsp;&nbsp;Logout Guest!&nbsp;</a></li>
+</ul>
+</div>
+<img src="Images/Shopper-says-logo.png" width="220" height="78" alt="logo" id="logo" /></div>
+<div class="navigation">
+<div id="nav">
+
+<ul>
+  <li><span id="sm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home</span>&nbsp;&nbsp;&nbsp;<span id="sl">/</span>&nbsp;&nbsp;</li>
+  <li><span id="sm">Welcome Guest</span></li>
+  
+    </ul>
+</div>
+</div>
+<!--Combobox Begin-->
+<div class="demo">
+<div class="ui-widget">
+<input name="date" type="text"  id="datepick" value="Selectdate"/>
+</div>
+</div>
+</div>
+<div class="demo1">
+<div class="ui-widget">
+	<select id="combobox1">
+		<option value="Shout.html">kuala-lumpur</option></select>
+</div></div>
+<div class="demo2">
+<div class="ui-widget">
+	<select id="combobox2">
+		<option value="g">Store Name</option>
+		<option value="Resources/BandarKinara.html">Bandar Kinara</option>
+		<option value="Resources/BangsarSouth.html">Bangsar South</option>
+		<option value="Resources/CherasMidah.html">Cheras Midah</option>
+		<option value="Resources/Kuchailama.html">Kuchai lama</option>
+		<option value="Resources/Menjalara.html">Menjalara</option>
+		<option value="Resources/Permaisuri.html">Permaisuri</option>
+		<option value="Resources/SriPetaling.html">Sri Petaling</option>
+        <option value="Resources/SriRampai.html">Sri Rampai</option>
+        <option value="Resources/UOAbangsar.html">UOA bangsar</option>
+        <option value="Resources/Yapkwansen.html">Yap kwan sen</option>
+        
+</select>
+</div></div><!--Combobox End-->
+<div id="description">
+<h3>Highlights</h3>
+<h4>Inbound Roamers</h4>
+<p> During week 35 the growth of visitors from Telefonica became flat, as the marketing of the campaign ended. During the campaign we got<span id="bol"> 718 new visitors/week</span> on average. <span id="bol">Cost per new visitor</span> for the campaign was 39.</p><br />
+<p> Dalmatia holiday resorts continue to be hotspots where roamers leave our network because of call setup problems and slow 3G data. Operations are working on an upgrade, scheduled to be ready in week 38. Previous upgrades have quickly increased roamer loyalty, for example in Zagreb we now have a loyalty percent of 74%, an improvement of 15% points in one month.</p>
+
+
+</div>
+<h3 id="feedbacks">Feedbacks</h3>
+<img  src="Images/line.jpg"  width="800" height="1" id="line" />
+<p id="msg">Messages</p><img src="Images/iconMessages.png"   id="message"/>
+<p id="act">Sentiment</p><img src="Images/sun Icon.jpg"  alt="intesity" width="8" id="action1" />
+<p id="date">Date and Time</p><img src="Images/icon-date.jpg"  alt="messages" id="time"  />
+<a href="#" id="link">Show next 10</a>
+<div id="allcont"><table width="871" height="94" border="0" cellpadding="0" id="table1">
+  <tr>
+    <td width="374">A decided to go to McDonald to grab some lunch. I ordered a bun</td>
+    <td width="206">Positive</td>
+    <td width="205">24th august</td>
+   
+  </tr>
+  <tr>
+    <td>A have a suggestion for MCDONALDS, I wish more fast food will b</td>
+    <td>Negative</td>
+    <td>25th august</td>
+    
+  </tr>
+  <tr>
+    <td>Aired of my order coming out wrong , from the drive -thru on 1st </td>
+    <td>Negative</td>
+    <td>25th august</td>
+    
+  </tr>
+ 
+</table>
+</table></div>
+</body>
+</html>

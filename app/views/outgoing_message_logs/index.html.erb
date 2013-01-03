@@ -1,0 +1,27 @@
+<h1>Listing outgoing_message_logs</h1>
+
+<table>
+  <tr>
+    <th>Message</th>
+    <th>Destination mobile number</th>
+    <th>Message status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @outgoing_message_logs.each do |outgoing_message_log| %>
+  <tr>
+    <td><%= outgoing_message_log.message %></td>
+    <td><%= outgoing_message_log.destination_mobile_number %></td>
+    <td><%= outgoing_message_log.message_status %></td>
+    <td><%= link_to 'Show', outgoing_message_log %></td>
+    <td><%= link_to 'Edit', edit_outgoing_message_log_path(outgoing_message_log) %></td>
+    <td><%= link_to 'Destroy', outgoing_message_log, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Outgoing message log', new_outgoing_message_log_path %>

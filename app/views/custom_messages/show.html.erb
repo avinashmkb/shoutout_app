@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Message:</b>
+  <%= @custom_message.message %>
+</p>
+
+<p>
+  <b>Created by:</b>
+  <%= @custom_message.created_by %>
+</p>
+
+
+<%= link_to 'Edit', edit_custom_message_path(@custom_message) %> |
+<%= link_to 'Back', custom_messages_path %>

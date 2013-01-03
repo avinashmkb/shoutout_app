@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  message: MyString
+  destination_mobile_number: MyString
+  message_status: MyString
+
+two:
+  message: MyString
+  destination_mobile_number: MyString
+  message_status: MyString

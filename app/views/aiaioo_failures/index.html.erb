@@ -1,0 +1,27 @@
+<h1>Listing aiaioo_failures</h1>
+
+<table>
+  <tr>
+    <th>Source number</th>
+    <th>Text</th>
+    <th>Retried</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @aiaioo_failures.each do |aiaioo_failure| %>
+  <tr>
+    <td><%= aiaioo_failure.source_number %></td>
+    <td><%= aiaioo_failure.text %></td>
+    <td><%= aiaioo_failure.retried %></td>
+    <td><%= link_to 'Show', aiaioo_failure %></td>
+    <td><%= link_to 'Edit', edit_aiaioo_failure_path(aiaioo_failure) %></td>
+    <td><%= link_to 'Destroy', aiaioo_failure, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Aiaioo failure', new_aiaioo_failure_path %>

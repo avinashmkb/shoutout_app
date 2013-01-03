@@ -1,0 +1,2 @@
+module OutgoingMessageLogsHelper
+end

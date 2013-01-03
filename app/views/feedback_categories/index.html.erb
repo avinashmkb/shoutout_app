@@ -1,0 +1,27 @@
+<h1>Listing feedback_categories</h1>
+
+<table>
+  <tr>
+    <th>Feedback</th>
+    <th>Category</th>
+    <th>Branch</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @feedback_categories.each do |feedback_category| %>
+  <tr>
+    <td><%= feedback_category.feedback_id %></td>
+    <td><%= feedback_category.category_id %></td>
+    <td><%= feedback_category.branch_id %></td>
+    <td><%= link_to 'Show', feedback_category %></td>
+    <td><%= link_to 'Edit', edit_feedback_category_path(feedback_category) %></td>
+    <td><%= link_to 'Destroy', feedback_category, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Feedback category', new_feedback_category_path %>

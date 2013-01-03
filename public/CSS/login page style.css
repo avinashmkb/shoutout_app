@@ -1,0 +1,52 @@
+@charset "utf-8";
+/* CSS Document */
+body{ margin:0; padding:0; background-color:#fefefe; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+color: #333333; background:url(../Images/login.jpg); }
+#logo{
+	position:absolute;
+	left: 55px;
+	top: 45px;
+	
+}
+#captio{
+	width:400px;
+	position:absolute;
+	height:140px;
+	left:285px;
+	top:115px;
+	color:#adadad;
+	font-weight:lighter;
+}
+#colo{ color:#ff9c33;}
+#info{
+	width:480px;
+	height:279px;
+	background:#fef3e2;
+	top:284px;
+	left:99px;
+	position:absolute;
+	border-radius:6px;
+	font-size:12px;
+}
+#info img{
+	position:absolute;
+	left: 2px;
+	top: 49px;
+	width: 473px;
+	height: 168px;
+	border-radius:6px;
+
+}
+#formm{
+	background:#fef3e2;
+	width:231px;
+	height:276px;
+	position:absolute;
+	left: 629px;
+	top: 285px;
+	border-radius:6px;
+}
+#butt{ position:absolute; width:200px; height:30px; border-radius:6px; left:10px; margin-top:30px;}
+a{ color:#ff9c33;  font-size:12px;}
+#butt2{ background:#F60; color:#FFF; box-shadow:none; width:110px; height:28px; border-radius:6px; opacity:0.8; cursor:pointer; margin-left:10px; font-size:14px; }
+#butt2:hover{ opacity:1;}

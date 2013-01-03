@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @configtable.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @configtable.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_configtable_path(@configtable) %> |
+<%= link_to 'Back', configtables_path %>

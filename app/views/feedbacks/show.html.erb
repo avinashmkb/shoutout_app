@@ -1,0 +1,370 @@
+
+ <script>
+
+  // JavaScript Document
+
+
+//Pie chart
+$(function () {
+    var chart;
+    
+        chart = new Highcharts.Chart({
+            chart: {
+				renderTo: 'piechart',
+				width:400,
+				backgroundColor:'none',
+                margin:0,
+																
+		
+                },
+				legend: { enabled:false
+			
+           
+			 
+        },
+			exporting: {
+    buttons: { 
+        exportButton: {
+            enabled:false
+        },
+        printButton: {
+            enabled:false
+        }
+
+    }
+},
+            title: {
+                text: ''
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>'+ this.point.name +'</b>: '+ Math.round(this.percentage) +' %';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    size:'49%',
+					allowPointSelect: true,
+                   
+                   dataLabels: {
+                        enabled: true,
+						 softConnector: false,
+						 distance:-20,
+						 color:'#fff',
+							
+                                           formatter: function() {
+                        return Math.round(this.percentage) +'       '},
+						
+                        style: {
+                        fontWeight: 'bold',
+																								fontSize:'14px'
+                               }
+						
+                        
+                    },
+					showInLegend: true
+                }
+            },
+			
+            series: [{
+                type: 'pie',
+				name: 'feedbacks',
+                data: [
+                    { name:'Positive',
+				      y:<%=@piechartPositive%>,
+					   color:'#3acb3a',
+								sliced:true
+					   
+					  
+					  },
+                    { name:'Negative',
+					  y:<%=@piechartNegative%>,
+					  color:'#f47359'},
+                    {
+                        name: 'Neutral',
+                        y: <%=@piechartNeutral%>,
+                      color:'#f7d009',
+					  sliced:true
+					
+                    },
+
+                ]
+            }],
+			
+			
+        });
+    });
+    
+
+</script>
+<script>
+$(document).ready(function() { 
+$('h1').click(function() {
+	
+
+
+	document.location.href="/dashboard/feedbacks"
+	
+	});
+
+});
+
+</script>
+<script>
+  $(document).ready(function() {
+    $('h1, #nav ul li:first-child' ).click(function(){
+      $('#siteLoader').css('visibility','visible')
+      });
+	
+});
+	 
+
+</script>
+
+
+<%if session[:pagetobeloaded]=="feedback" %>
+<h2 id="summary">Summary</h2>
+<div id="wrapp">
+  <div id="piechart"></div>
+  
+  <!--
+<ul>
+<li>Positive</li>
+<li>Negative</li>
+<li>Neutral</li>
+</ul>-->
+  
+  <table width="300" border="0">
+    <tr>
+      <td colspan="3">Net Score is <%=@netscore%></td>
+    </tr>
+    <tr> 
+      <td><img src="<%=@baseurl%>/Images/positive.png"  alt="positive" /></td>
+      <td>Positive</td>
+      <td><%=@piechartPositive%> Feedbacks</td>
+    </tr>
+    <tr>
+      <td><img src="<%=@baseurl%>/Images/negative.png" alt="negative" /></td>
+      <td>Negative</td>
+      <td><%=@piechartNegative%> Feedbacks</td>
+    </tr>
+    <tr>
+      <td><img src="<%=@baseurl%>/Images/neutral.png"  alt="neutral" /></td>
+      <td>Neutral</td>
+      <td><%=@piechartNeutral%> Feedbacks</td>
+    </tr>
+  </table>
+</div>
+<h3 id="feedbacks1">Feedbacks</h3>
+<%end%>
+
+
+<% if session[:pagetobeloaded]=="frequentwords"%>
+<br /> <input type="button" value="See all frequent words " class="seemore" />
+
+<!--frequent words animation and Styling-->
+<style>
+.seemore{ float:left; margin-left:7%; width:200px; height:30px; font-weight:bold; font-size:13px; border:none; background-image:url('../assets/seemor.png');  color:#fff; border-radius:5px; cursor:pointer;}
+.seemore_up{ float:left; margin-left:7%; width:200px; height:30px; font-weight:bold; font-size:13px; border:none; background-image:url('../assets/seemor_up.png');  color:#fff; border-radius:5px; cursor:pointer;}
+.seemore:hover{ box-shadow:#999 0px 3px 5px 0px;}
+/*#seemore:hover{ background-color:#999; color:#000;}*/
+</style>
+<script>
+$(document).ready(function() {
+	$('#tagCloud').animate({'height':'toggle'},0)
+    $('.seemore').click(function(){
+		
+		$('#tagCloud').animate({'height':'toggle'}, 1500,'swing')
+		$('#tagCloud').css('overflow','hidden')
+
+		
+		});
+});
+
+</script>
+
+
+<script>
+$(document).ready(function() {
+$('.seemore').bind('click', function () {
+    var $this = $(this);
+    if ($this.attr('value') == 'See all frequent words ') {
+        $this.attr('value', 'Hide all frequent words  ').toggleClass('seemore_up');
+    } 
+	
+	else {
+        $this.attr('value', 'See all frequent words ').toggleClass('seemore_up');
+    }
+});
+});
+
+
+</script>
+<!--frequent words animation and Styling-->
+
+
+		
+
+<div id="tagCloud">
+<br /><br />
+<% count =0
+@repeat_keywords.each do |repeat_key|
+	
+	
+	averagesentiment = repeat_key.score.to_f/repeat_key.count
+	%>	
+	
+<a href="<%=@baseurl%>/feedbacks/frequentwords?&keyword=<%=repeat_key.text%>" style="text-decoration:none; color: <% if averagesentiment >0 and averagesentiment <=35 %>#f47359<%elsif averagesentiment > 36 and averagesentiment <=60 %>#f7d009<%else%>#3acb3a<%end%>;" class="<%if count < 2%>larger<%elsif count>2 and count <4%>large<%elsif count>4 and count <6 %>medium<%elsif count>6 and count<8%>small<%else%>smaller<%end%>" ><%=repeat_key.text%></a>  
+<%count += 1%>
+<%end %>
+<br /> <br /><br />
+
+</div>
+<h3 id="feedbacks1">Feedbacks containing "<%=session[:keyword]%>"</h3>
+<%end%>	
+
+<% if session[:pagetobeloaded]=="category" %>
+	<h3 id="feedbacks">Feedbacks belonging to  "<%=session[:categoryname]%>" category</h3>
+<% end %>
+
+
+<div id="alltabs">
+  <h3 id="neutral">&nbsp;&nbsp;Neutral&nbsp;&nbsp;</h3>
+  <h3 id="negative">&nbsp;&nbsp;Negative&nbsp;&nbsp;</h3>
+  <h3 id="positive">&nbsp;&nbsp;Positive&nbsp;&nbsp;</h3>
+  <h3 id="all">&nbsp;&nbsp;&nbsp;All&nbsp;&nbsp;&nbsp;</h3>
+</div>
+<img  src="<%=@baseurl%>/Images/line.jpg"  width="800" height="1" id="line" />
+<p id="msg">Messages</p>
+<img src="<%=@baseurl%>/Images/iconMessages.png"   id="message" alt="Messages"/>
+<p id="act">Sentiment</p>
+<img src="<%=@baseurl%>/Images/sentiment.png"  alt="intesity"  id="action" />
+<p id="dated">Date and Time</p>
+<img src="<%=@baseurl%>/Images/icon-date.jpg"  alt="messages" id="time"  />
+<p id="refrnc">Refrrence ID</p>
+<img src="<%=@baseurl%>/Images/sentiment.png"  alt="intesity"  id="refrncimg" />
+
+<div id="allcont">
+  <table   id="table1"  class="maintable" cellspacing="1" >
+		
+		
+	<% @feedbacks.each do |feedback|%>
+  <tr>
+    <td  ><%=feedback.message%></td>
+    <td  ><% if feedback.sentiment_id == 1 or feedback.sentiment_id==2%>
+    Positive
+    	<%elsif feedback.sentiment_id== 4 or feedback.sentiment_id== 5%>
+    Negative
+    	<%else%>
+    Neutral
+    	<%end%>
+    </td>
+    <td><%=feedback.created_at.strftime("%d %b %y %I:%M %p")%></td>
+  <td><%if feedback.ref_num %>
+  <%=feedback.ref_num%>
+   <%else%>
+    NA
+   <%end%>
+</td>
+ 
+  </tr>
+  
+  <%end%>  
+  
+ 
+</table>
+ </div>
+
+
+<div id="positivecont"> 
+<table  id="table1"  class="maintable" cellspacing="1" cellspacing="1">
+ 
+		
+	   	
+<%@feedbacks.each do |feedbackpos|%>
+	<% if feedbackpos.sentiment_id ==1 or feedbackpos.sentiment_id == 2 %>
+		 <tr>
+    		<td ><%=feedbackpos.message%></td>
+    		<td >Positive</td>
+    		<td ><%=feedbackpos.created_at.strftime("%d %b %y %I:%M %p")%></td>
+<td><%if feedbackpos.ref_num %>
+  <%=feedbackpos.ref_num%>
+   <%else%>
+    NA
+   <%end%> 
+</td>
+   
+         </tr>
+         
+           
+    <%end%>    
+   
+  
+   <%end%>
+  
+  
+ 
+</table>
+</div>
+<div id="negativecont">
+<table  id="table1"  class="maintable" cellspacing="1" cellspacing="1">
+ 
+		   	
+<%@feedbacks.each do |feedbacknegative|%>
+	<% if feedbacknegative.sentiment_id ==4 or feedbacknegative.sentiment_id == 5 %>
+		 <tr>
+    		<td ><%=feedbacknegative.message%></td>
+    		<td >Negative</td>
+    		<td ><%=feedbacknegative.created_at.strftime("%d %b %y %I:%M %p")%></td>
+  <td><%if feedbacknegative.ref_num %>
+  <%=feedbacknegative.ref_num%>
+   <%else%>
+    NA
+   <%end%>
+</td>
+ 
+         </tr>
+         
+           
+    <%end%>    
+   
+  
+   <%end%>
+	
+	
+ </table>
+</div>
+<div id="neutralcont">
+<table  id="table1"  class="maintable" cellspacing="1" cellspacing="1">
+	
+  <%@feedbacks.each do |feedbacknegative|%>
+	<% if feedbacknegative.sentiment_id == 3 %>
+		 <tr>
+    		<td ><%=feedbacknegative.message%></td>
+    		<td >Neutral</td>
+    		<td ><%=feedbacknegative.created_at.strftime("%d %b %y %I:%M %p")%></td>
+  <td><%if feedbacknegative.ref_num %>
+  <%=feedbacknegative.ref_num%>
+   <%else%>
+    NA
+   <%end%>
+</td>
+ 
+         </tr>
+         
+           
+    <%end%>    
+   
+  
+   <%end%>
+  </table>
+</div>
+
+<div id="footer">
+ <img src="<%=@baseurl%>/Images/line.jpg" id="baseline" />
+   <ul>
+   
+      <li>&copy; Copyright 2012 ShopperSays.com</li>
+      </ul>  <div style="height:50px;"></div>
+  </div>
+

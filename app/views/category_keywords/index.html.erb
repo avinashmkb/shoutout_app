@@ -1,0 +1,26 @@
+<h1>Listing category_keywords</h1>
+
+<table>
+  <tr>
+    <th>Keyword</th>
+    <th>Created by</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @category_keywords.each do |category_keyword| %>
+  <tr>
+    <td><%= category_keyword.keyword %></td>
+    <td><%= category_keyword.created_by %></td>
+    <td><%= category_keyword.category_id %></td>
+    <td><%= link_to 'Show', category_keyword %></td>
+    <td><%= link_to 'Edit', edit_category_keyword_path(category_keyword) %></td>
+    <td><%= link_to 'Destroy', category_keyword, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Category keyword', new_category_keyword_path %>

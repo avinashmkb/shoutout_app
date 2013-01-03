@@ -1,0 +1,328 @@
+
+<% if session[:pagetobeloaded]!="shoppersaysapi" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+
+
+<% if session[:pagetobeloaded]!="dashboard"%>
+<link rel="stylesheet" href="<%=@baseurl%>/CSS/feebacks.css" type="text/css" />
+<%end%>
+<% if session[:pagetobeloaded]=="dashboard"%>
+<link rel="stylesheet" href="<%=@baseurl%>/CSS/style.css" type="text/css" />
+<%end%>
+<link rel="stylesheet" href="<%=@baseurl%>/CSS/responsive.css" type="text/css" />
+<link rel="stylesheet" href="<%=@baseurl%>/CSS/jquery-ui-1.8.22.custom.css" type="text/css"/>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/jquery-ui.min.js"></script>
+<script type="text/javascript" src="<%=@baseurl%>/Scripts/highstock.js"></script> 
+<script type="text/javascript" src="<%=@baseurl%>/Scripts/combo.js"></script>
+<script type="text/javascript" src="<%=@baseurl%>/Scripts/easing.js"></script>
+<script type="text/javascript"  src="<%=@baseurl%>/Scripts/date.js"></script>
+<script type="text/javascript" src="<%=@baseurl%>/Scripts/exporting.js"></script> 
+<script type="text/javascript" src="<%=@baseurl%>/Scripts/highcharts-more.js"></script>
+
+<script>
+    $(function() {
+        $( "#from" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2,
+            onClose: function( selectedDate ) {
+                $( "#to" ).datepicker( "option", "minDate", selectedDate );
+            }
+        });
+        $( "#to" ).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            numberOfMonths: 2,
+            onClose: function( selectedDate ) {
+                $( "#from" ).datepicker( "option", "maxDate", selectedDate );
+            }
+        });
+		$( "#from, #to" ).datepicker({ dateFormat: "yy-mm-dd" });
+		$( "#from, #to" ).datepicker( "option", "dateFormat", "dd-mm-yy" );
+           $( "#from" ).datepicker( "setDate" , '<%=session[:fromdate]%>' );
+	   $( "#to" ).datepicker( "setDate" , '<%=session[:todate]%>' );
+	   $( "#to" ).datepicker( "option", "maxDate", '+0m +0w' );
+    });
+    </script>
+
+
+<style>
+.header a{ text-decoration:none; color:#333;}
+</style>
+
+<script language="javascript" type="text/javascript">
+   $(document).ready(function() {
+   	
+   	     $('#from ,#to').change(function() { 
+   		
+   		city = $("#combobox1").val();
+  	    store = $("#combobox2").val();
+  	    dateFrom=$('#from').val();
+        dateTo = $('#to').val();
+        
+        dateFromJs= getDateFromFormat(dateFrom,'mm-dd-yyyy');
+        dateToJs = getDateFromFormat(dateFrom,'mm-dd-yyyy');
+        
+        if (dateFromJs >=dateToJs ) {
+        	 var pathname = window.location.pathname;
+  		var spliturl =pathname.split("?");
+  		if (!spliturl)
+  				{
+  				var baseurl =spliturl[0];
+  		
+  				}
+  			else 
+	  	{ 
+	  		var baseurl = pathname;
+	  	}
+	  	Url =baseurl+"?"+"&city="+city+"&store="+store+"&fromdate="+dateFrom+"&todate="+ dateTo
+	  	 location.href = Url;
+	       	  } // change function()
+        }); // Date field	
+   	  	   	
+      // For some SELECT with ID combobox
+      $("#combobox2").combobox({
+         selected: function(event, ui) {
+            // Event handling code goes here.
+            
+            city = $("#combobox1").val();
+  	 store = $("#combobox2").val();
+
+        dateFrom=$('#from').val();
+  	 dateTo = $('#to').val();
+
+  	 var pathname = window.location.pathname;
+  	var spliturl =pathname.split("?");
+  	if (!spliturl)
+  	{
+  		var baseurl =spliturl[0];
+  		
+  	}
+  	else 
+  	{ 
+  		var baseurl = pathname;
+  	}
+  	Url =baseurl+"?"+"&city="+city+"&store="+store+"&fromdate="+dateFrom+"&todate="+ dateTo
+  	 location.href = Url;
+         } // selected
+      }); // combo
+      
+     	   	
+      // For some SELECT with ID combobox
+      $("#combobox1").combobox({
+         selected: function(event, ui) {
+            // Event handling code goes here.
+            
+            city = $("#combobox1").val();
+  	 store = $("#combobox2").val();
+  	 dateFrom=$('#from').val();
+  	 dateTo = $('#to').val(); 
+  	 var pathname = window.location.pathname;
+  	var spliturl =pathname.split("?");
+  	if (!spliturl)
+  	{
+  		var baseurl =spliturl[0];
+  		
+  	}
+  	else 
+  	{ 
+  		var baseurl = pathname;
+  	}
+  	Url =baseurl+"?"+"&city="+city+"&store="+"Store"+"&fromdate="+dateFrom+"&todate="+ dateTo
+  	 location.href = Url;
+         } // selected
+      }); // combo  
+      
+   }); // ready
+</script>
+
+  	
+
+<script>
+$(document).ready(function() {
+	<% if session[:feedbacktype]=="positive" %>
+	$('#positive').addClass('ba');
+	<% elsif session[:feedbacktype]=="negative" %>
+	$('#negative').addClass('ba');
+	<% elsif session[:feedbacktype]=="neutral" %>
+	$('#neutral').addClass('ba');
+	<% else %>
+	$('#all').addClass('ba');
+	<% end %>
+});
+	$(document).ready(function() {
+		
+        <% if session[:feedbacktype]=="positive" %>
+		$('#negativecont').hide();
+		$('#neutralcont').hide();
+		$('#allcont').hide();
+	
+	<% elsif session[:feedbacktype]=="negative" %>
+	   $('#allcont').hide();
+		$('#neutralcont').hide();
+		$('#positivecont').hide();
+	<% elsif session[:feedbacktype]=="neutral" %>
+	   $('#negativecont').hide();
+		$('#allcont').hide();
+		$('#positivecont').hide();
+	<% else %>
+	    $('#negativecont').hide();
+		$('#neutralcont').hide();
+		$('#positivecont').hide();
+	<% end %>
+		
+		 $('#positive').click(function(){
+			  $('#negative, #neutral,#all').removeClass('ba');
+		   $(this).addClass('ba');
+			  $('#neutralcont, #negativecont,#allcont').animate({height:'hide'},'slow');
+					$('#positivecont').delay(800).animate({height:'show'},'slow','swing');
+								
+			});
+			
+			$('#negative').click(function(){
+				 $('#positive, #neutral,#all').removeClass('ba');
+				 $(this).addClass('ba');
+				 $('#positivecont, #neutralcont,#allcont').animate({height:'hide'},'slow');
+				 $('#negativecont').delay(800).animate({height:'show'},'slow','swing');
+			});
+			$('#neutral').click(function(){
+				 $('#positive,#negative,#all').removeClass('ba');
+				 $(this).addClass('ba');
+				 $('#positivecont, #negativecont,#allcont').animate({height:'hide'},'slow');;
+				 $('#neutralcont').delay(800).animate({height:'show'},'slow','swing');
+			});
+			$('#all').click(function(){
+				$('#positive,#negative,#neutral').removeClass('ba');
+				 $(this).addClass('ba');
+				 $('#positivecont, #negativecont,#neutralcont').animate({height:'hide'},'slow');
+				 $('#allcont').delay(700).animate({height:'show'},'slow','swing');
+				
+				});
+			
+	});
+		
+		
+	
+	</script>
+	<!--Loading animation css and javascript-->
+
+	<style> 
+#siteDetailLoader{ position:absolute; z-index:5000; left: 45%; top:50%; font-family:calibri; font-size:18px; font-weight:600;}
+#siteLoader{width:100%; height:100%; position:absolute; z-index:6000; background:#fff; visibility:hidden; opacity:0.7;}
+	</style>
+
+	<script>
+  	$(document).ready(function() {
+    $('#chuma,#tag a,#tagCloud a,.ui-autocomplete' ).click(function(){
+    $('#siteLoader').css('visibility','visible')
+    });
+	});
+	</script>
+
+	<script>
+ 	$(document).ready(function() { 
+  	$('#from, #to').change(function() { 
+    $('#siteLoader').css('visibility','visible')
+    });
+ 	});
+	</script>
+
+<!--Loading animation css and javascript-->
+	
+<title> <% if session[:pagetobeloaded]=="dashboard"%> Feedback Management Dashboard <% elsif session[:pagetobeloaded]=="category" %> Feedbacks >> Important categories <% elsif session[:pagetobeloaded]=="frequentwords" %> Feedbacks >> Containing "<%=session[:keyword]%>" <%elsif session[:pagetobeloaded]=="feedback"%> Feedbacks <%end%>
+	
+	
+	
+	
+      </title>
+</head>
+
+<body>
+<div id='siteLoader' > 
+        <div id='siteDetailLoader'> 
+        <table>
+        <tr><td><%= image_tag "loading.gif" %></td><td>Loading...</td></tr></table> 
+        </div> 
+      </div> 
+<div id='contain'>
+
+	
+<div class="header"><br />
+  <br />
+  <h1 id="head"><span class="orange">&nbsp;&nbsp;Feedback Management</span> Dashboard</h1>
+</div>
+<div id="topContent">
+  <ul>
+    <li><a href="<%=@baseurl%>/session/destroy">&nbsp;&nbsp;&nbsp;Logout <%=@login_name%>&nbsp;</a></li>
+  </ul>
+</div>
+<a href="http://shoppersays.com/" target="_blank"> <img src="<%=@baseurl%>/Images/heartbeatlogo.png"   alt="logo" id="logo" /></a>
+<div class="navigation">
+  <div id="nav">
+    <ul>
+      <li><a href="<%=@baseurl%>/feedbacks">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="sl">/</span>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+      <li>Welcome <%=@login_name%></li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div class="demo">
+  <label for="from"><span>From:</span></label>
+  <input type="text" id="from" name="from" />
+  <label for="to"><span>To:</span></label>
+  <input type="text" id="to" name="to" />
+</div>
+
+
+<%if session[:pagetobeloaded] != "category_edit" %>
+<div class="demo1">
+<div class="ui-widget">
+	   
+		<select id="combobox1"  >
+		<%@cityname.each do |city| %>
+		   <option value="<%=city%>"><%=city%> </option>
+		<%end%>
+		
+		
+    </select>		
+</div></div>
+<div class="demo2">
+<div class="ui-widget">
+	<select id="combobox2">
+		<%@storename.each do |branch|%>
+		 <option value="<%=branch%>" ><%=branch%></option>
+		<%end%>
+</select>
+</div></div><!--Combobox End-->
+<% end %>
+
+<%= yield %>
+
+</div>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-37377216-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>
+<% else  %>
+<%= yield %>
+<% end %>
+

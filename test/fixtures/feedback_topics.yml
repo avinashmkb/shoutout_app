@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  feedback_id: 1
+  trendingtopic_id: 1
+  branch_id: 1
+
+two:
+  feedback_id: 1
+  trendingtopic_id: 1
+  branch_id: 1

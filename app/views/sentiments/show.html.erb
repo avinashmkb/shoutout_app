@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @sentiment.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @sentiment.value %>
+</p>
+
+
+<%= link_to 'Edit', edit_sentiment_path(@sentiment) %> |
+<%= link_to 'Back', sentiments_path %>

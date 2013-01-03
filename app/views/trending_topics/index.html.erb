@@ -1,0 +1,23 @@
+<h1>Listing trending_topics</h1>
+
+<table>
+  <tr>
+    <th>Text</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @trending_topics.each do |trending_topic| %>
+  <tr>
+    <td><%= trending_topic.text %></td>
+    <td><%= link_to 'Show', trending_topic %></td>
+    <td><%= link_to 'Edit', edit_trending_topic_path(trending_topic) %></td>
+    <td><%= link_to 'Destroy', trending_topic, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Trending topic', new_trending_topic_path %>

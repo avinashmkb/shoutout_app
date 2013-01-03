@@ -1,0 +1,25 @@
+<h1>Listing sentiment_overrides</h1>
+
+<table>
+  <tr>
+    <th>Text</th>
+    <th>Sentiment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sentiment_overrides.each do |sentiment_override| %>
+  <tr>
+    <td><%= sentiment_override.text %></td>
+    <td><%= sentiment_override.sentiment_id %></td>
+    <td><%= link_to 'Show', sentiment_override %></td>
+    <td><%= link_to 'Edit', edit_sentiment_override_path(sentiment_override) %></td>
+    <td><%= link_to 'Destroy', sentiment_override, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sentiment override', new_sentiment_override_path %>

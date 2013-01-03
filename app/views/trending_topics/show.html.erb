@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Text:</b>
+  <%= @trending_topic.text %>
+</p>
+
+
+<%= link_to 'Edit', edit_trending_topic_path(@trending_topic) %> |
+<%= link_to 'Back', trending_topics_path %>

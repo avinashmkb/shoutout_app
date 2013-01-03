@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Feedback:</b>
+  <%= @feedback_topic.feedback_id %>
+</p>
+
+<p>
+  <b>Trendingtopic:</b>
+  <%= @feedback_topic.trendingtopic_id %>
+</p>
+
+<p>
+  <b>Branch:</b>
+  <%= @feedback_topic.branch_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_feedback_topic_path(@feedback_topic) %> |
+<%= link_to 'Back', feedback_topics_path %>

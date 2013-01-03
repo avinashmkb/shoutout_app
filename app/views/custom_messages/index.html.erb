@@ -1,0 +1,25 @@
+<h1>Listing custom_messages</h1>
+
+<table>
+  <tr>
+    <th>Message</th>
+    <th>Created by</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @custom_messages.each do |custom_message| %>
+  <tr>
+    <td><%= custom_message.message %></td>
+    <td><%= custom_message.created_by %></td>
+    <td><%= link_to 'Show', custom_message %></td>
+    <td><%= link_to 'Edit', edit_custom_message_path(custom_message) %></td>
+    <td><%= link_to 'Destroy', custom_message, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Custom message', new_custom_message_path %>

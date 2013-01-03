@@ -1,0 +1,26 @@
+require 'bundler/capistrano'
+default_run_options[:pty] = true
+set :application, "shoppersays"
+set :user, "ubuntu"
+set :repository, "https://avinmb@bitbucket.org/jerrykurian/shoutout_web.git" 
+set :applicationdir, "/home/ubuntu/shoutout_web"
+set :domain, "54.251.35.15"
+
+set :scm, :git
+set :branch, "master"
+
+#cache the git on remote ec2 machine
+set :deploy_via, :remote_cache
+set :deploy_to, :applicationdir
+ssh_options[:forward_agent] = true
+
+server domain, :app, :web, :db, :primary => true
+
+namespace :deploy do
+  task :start do ; end
+  task :stop do ; end
+  task :restart, :roles => :app, :except => {:no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+end  
+after "deploy", "deploy:restart"    

@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../CSS/style.css" type="text/css" />
+<link rel="stylesheet" href="../CSS/jquery-ui-1.8.22.custom.css" type="text/css"/>
+<script type="text/javascript" src="Scripts/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="Scripts/jquery-ui-1.8.22.custom.min.js"></script>
+<script type="text/javascript" src="Scripts/combo.js"></script>
+<script type="text/javascript" src="Scripts/jquery.jqcanvas-modified.js"></script>
+<script type="text/javascript" src="Scripts/jquery.speedometer.Yapkwansen.js"></script>
+<script type="text/javascript" src="Scripts/Yapkwansen.js"></script>
+<title>Yap Kwan sen</title>
+</head>
+	<body>
+<div class="header"><br /><br /><a href="../Shout.html">
+<h1><span id="custom">Voice of the Customer</span> Dashboard</h1></a>
+<div id="topContent">
+<ul>
+<li><a href="#">Account&nbsp;&nbsp;&nbsp;<span id="pipe">|</span></a></li>
+<li><a href="#">&nbsp;&nbsp;&nbsp;About&nbsp;&nbsp;&nbsp;<span id="pipe">|</span></a></li>
+<li><a href="../index.html"  class="last"  >&nbsp;&nbsp;&nbsp;Logout Guest!&nbsp;</a></li>
+</ul>
+</div>
+<img src="../Images/Shopper-says-logo.png" width="220" height="78" alt="logo" id="logo" /></div>
+<div class="navigation">
+<div id="nav">
+
+<ul>
+  <li><span id="sm">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home</span>&nbsp;&nbsp;&nbsp;<span id="sl">/</span>&nbsp;&nbsp;</li>
+  <li><span id="sm">Welcome Guest</span></li>
+  
+    </ul>
+</div>
+</div>
+<!--Combobox-->
+<div class="demo">
+<div class="ui-widget">
+	<input name="date" type="text"  id="datepick" value="Selectdate"/>
+</div>
+</div>
+<div class="demo1">
+<div class="ui-widget">
+	<select id="combobox1">
+		<option value="../Shout.html">kuala-lumpur</option></select>
+</div></div>
+<div class="demo2">
+<div class="ui-widget">
+	<select id="combobox2">
+		<option value="#">Store Name</option>
+		<option value="BandarKinara.html">Bandar Kinara</option>
+		<option value="BangsarSouth.html">Bangsar South</option>
+		<option value="CherasMidah.html">Cheras Midah</option>
+		<option value="Kuchailama.html">Kuchai lama</option>
+		<option value="Menjalara.html">Menjalara</option>
+		<option value="Permaisuri.html">Permaisuri</option>
+		<option value="SriPetaling.html">Sri Petaling</option>
+        <option value="SriRampai.html">Sri Rampai</option>
+        <option value="UOAbangsar.html">UOA bangsar</option>
+        <option value="Yapkwansen.html">Yap kwan sen</option>
+        
+</select>
+</div></div>
+<!--Combobox-->
+<div class="graph">
+
+<div class="back"><h3><b>Net Experience Score</b></h3>
+</div>
+<div class="back1"><h3><b>Customer Sentiments</b></h3>
+</div> 
+<div id="meter">
+<input type="text" class="speedometer" value="" ></input>
+<button class="changeSpeedometer">Submit</button><br/>
+<div id="test"></div></div>
+
+<script src="Scripts/highcharts.js"></script>
+<script src="Scripts/exporting.js"></script>
+<div id="container" style="width: 248px; height: 215px;  margin-left:386px; margin-top:-90px; position:absolute;"></div>
+<div class="back3"><h3><b>Experience Score Tracker </b></h3>
+<div id="container3" style="width: 320px; height: 195px;position:absolute; margin-top:17px; margin-left:2px;" ></div>
+</div>
+</div>
+<div class="back2"><h3><b>Insight Feed</b></h3>
+<!--TagCloud-->
+<div style="_height:230px; width:290px; background:none;font-family:Arial; text-align:left; margin-left:auto; margin-right:auto; margin-top:35px;">
+<div style="padding:3px;">
+   <a href="comment.html" style="font-size:22px;text-decoration:none; color: #FF7600;">Service</a>  
+   <a href="comment.html" style="font-size:20px;text-decoration:none; color: #642168;">Old Town</a>  
+   <a href="comment.html" style="font-size:22px;text-decoration:none; color: #FF7600;">One Socket point</a>  
+   <a href="comment.html" style="font-size:21px;text-decoration:none; color: #f7d009;">Service slow</a>  
+   <a href="comment.html" style="font-size:20px;text-decoration:none; color: #642168;">Staff</a>  
+   <a href="comment.html" style="font-size:19px;text-decoration:none; color: #FF7600;">201 n 204</a>  
+   <a href="comment.html" style="font-size:20px;text-decoration:none; color: #87A800;">Manager and staff</a>  
+   <a href="comment.html" style="font-size:19px;text-decoration:none; color: #f7d009;">Ice Fire Polo Bun</a>  
+   <a href="comment.html" style="font-size:18px;text-decoration:none; color: #87A800;">Limited Parking</a>  
+   <a href="comment.html" style="font-size:17px;text-decoration:none; color: #FF7600;">Nice View</a>  
+   <a href="comment.html" style="font-size:17px;text-decoration:none; color: #f7d009;">Uncle</a>  
+   <a href="comment.html" style="font-size:16px;text-decoration:none; color: #642168;">Social media</a>  
+    </div>
+</div>
+<!--TagCloud-->
+
+</div>
+<div class="back4"><h3><b>Readymade Classifications</b></h3>
+  <div id="container2" style="width: 280px; height: 200px; margin-top:10px; margin-left:20px; "></div>
+  
+  </div>
+  <div class="back5"><h3><b>Experience score Store wise</b></h3>
+
+<section id="tabb">
+	<div class="wrapper">
+		<table class="datatable">
+		<tr>
+				<th scope="col"  id="size">Store</th>
+				<th scope="col" id="size">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scrore</th>
+			
+			
+			</tr>
+			<tr>
+				<td><a href="BandarKinara.html">Bandar Kinara</a></td>
+				<td id="cent">-0.54</td>
+				
+			
+			</tr>
+			<tr>
+				<td><a href="BangsarSouth.html">Bangsar south</a></td>
+				<td id="cent">0.31</td>
+				
+				
+			</tr>
+			<tr>
+				<td><a href="CherasMidah.html">Cheras midah</a></td>
+				<td id="cent">-0.27</td>
+				
+				
+			</tr>
+			<tr>
+				<td><a href="kuchailama.html">Kuchai lama</a></td>
+				<td id="cent">-0.58</td>
+				
+				
+			</tr>
+			<tr>
+				<td><a href="Menjalara.html">Menjalara</a></td>
+				<td id="cent">-0.78</td>
+				
+				
+			</tr>
+			<tr>
+				<td><a href="Permaisuri.html">Permaisuri</a></td>
+				<td id="cent">-0.51</td>
+			</tr> 
+            
+            <tr>
+				<td><a href="SriPetaling.html">Sri Petaling</a></td>
+				<td id="cent">-0.03</td>
+			</tr> 
+            
+            <tr>
+				<td><a href="SriRampai.html">Sri Rampai</a></td>
+				<td id="cent">0.15</td>
+			</tr> 
+            <tr>
+				<td><a href="UOAbangsar.html">UOA bangsar</a></td>
+				<td id="cent">0.08</td>
+			</tr> 
+           
+            </table>
+            
+            
+		
+                
+                
+                
+               
+	</div>
+    </section>
+    </div>
+
+</body>
+</html>

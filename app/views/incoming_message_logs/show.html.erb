@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Message:</b>
+  <%= @incoming_message_log.message %>
+</p>
+
+<p>
+  <b>Mobile number:</b>
+  <%= @incoming_message_log.mobile_number %>
+</p>
+
+
+<%= link_to 'Edit', edit_incoming_message_log_path(@incoming_message_log) %> |
+<%= link_to 'Back', incoming_message_logs_path %>

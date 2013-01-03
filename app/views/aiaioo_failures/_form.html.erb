@@ -1,0 +1,29 @@
+<%= form_for(@aiaioo_failure) do |f| %>
+  <% if @aiaioo_failure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@aiaioo_failure.errors.count, "error") %> prohibited this aiaioo_failure from being saved:</h2>
+
+      <ul>
+      <% @aiaioo_failure.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :source_number %><br />
+    <%= f.text_field :source_number %>
+  </div>
+  <div class="field">
+    <%= f.label :text %><br />
+    <%= f.text_field :text %>
+  </div>
+  <div class="field">
+    <%= f.label :retried %><br />
+    <%= f.number_field :retried %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

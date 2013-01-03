@@ -1,0 +1,25 @@
+<h1>Listing configtables</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Value</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @configtables.each do |configtable| %>
+  <tr>
+    <td><%= configtable.name %></td>
+    <td><%= configtable.value %></td>
+    <td><%= link_to 'Show', configtable %></td>
+    <td><%= link_to 'Edit', edit_configtable_path(configtable) %></td>
+    <td><%= link_to 'Destroy', configtable, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Configtable', new_configtable_path %>

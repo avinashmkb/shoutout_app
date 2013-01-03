@@ -1,0 +1,2 @@
+module SmsalertChecksHelper
+end

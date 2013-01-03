@@ -1,0 +1,458 @@
+
+<script>
+
+
+$(function () {
+	var chart = new Highcharts.Chart({
+	
+	    chart: {
+	        renderTo: 'container',
+	        type: 'gauge',
+									backgroundColor: 'none',
+									
+				
+									
+	        
+	        height: 200
+	    },
+					 title: {
+	        text: ''
+	    },
+					exporting: {
+                buttons: {
+                    exportButton: {
+                        enabled: false
+                    },
+                    printButton: {
+                        enabled: false
+                    }
+
+                }
+            },
+	
+	    
+	    pane: [{
+	        startAngle: -55,
+	        endAngle: 55,
+	        background: null,
+	        center: ['49%', '125%'],
+									size: 360,
+	       
+									
+	    }],	    		        
+	
+	    yAxis: [{
+	        min: 0,
+	        max: 100,
+	        minorTickPosition: 'outside',
+	        tickPosition: 'outside',
+	        labels: {
+	        	rotation: 'auto',
+	        	distance: 20
+	        },
+	        plotBands: [{
+	        	from: 0,
+	        	to: 25,
+	        	color: '#f47359',
+	        	innerRadius: '100%',
+	        	outerRadius: '110%'
+	        },{ from: 25,
+	        	to: 75,
+	        	color: '#f7d009',
+	        	innerRadius: '100%',
+	        	outerRadius: '110%'},{from: 75,
+	        	to: 100,
+	        	color: '#3acb3a',
+	        	innerRadius: '100%',
+	        	outerRadius: '110%'}],
+									 
+	        pane: 0,
+	        
+	    }, ],
+	    
+	    plotOptions: {
+	    	gauge: {
+							 
+						
+	    
+	    		dial: {
+	    			radius: '110%',baseWidth: 3, rearLength: '-45%'
+								
+	    		},
+							
+	    	}
+	    },
+	    	
+	
+	    series: [{
+					
+	        data: [{y:<%=@netscore%>,name:'Positive'}],
+	        yAxis: 0
+	    }, ]
+	
+	},
+	
+	// Let the music play
+	function(chart) {
+	    setInterval(function() {
+	        var left = chart.series[0].points[0],
+	            right = chart.series[1].points[0],leftVal, 
+	            inc = (Math.random() - 0.5) * 3;
+	          leftVal =  left.y + inc;
+	        rightVal = leftVal + inc / 3;
+	        if (leftVal < 0 || leftVal > 100) {
+	            leftVal = left.y - inc;
+	        }
+	        if (rightVal < 0 || rightVal > 100) {
+	            rightVal = leftVal;
+	        }
+	
+	        left.update(leftVal, false);
+	        right.update(rightVal, false);
+	        chart.redraw();
+	
+	    }, 750);
+	
+	});
+});
+
+//bar graph begin
+$(function() {
+
+    var chart;
+    $(document).ready(function() {
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container2',
+                type: 'bar',
+				backgroundColor: 'none'
+
+                
+            },
+            title: {
+                text: ''
+            },
+            legend: {
+                enabled: 'true',
+                padding: 4.5
+            },
+            exporting: {
+                buttons: {
+                    exportButton: {
+                        enabled: false
+                    },
+                    printButton: {
+                        enabled: false
+                    }
+
+                }
+            },
+            xAxis: {
+                max: <%=@business_categoryids.length-1%>,
+                color: '#fb9817',
+                categories: [
+                 <% 
+                   @count=0 
+                  @business_categoryids.each do |business_categoryid|%>
+                   '<a href="/dashboard/feedbacks/category?&category=<%=business_categoryid%>&feedbacktype=all"><%=@categorynames[@count]%></a>',
+                  <%@count += 1%>  
+                 <% end %>
+                 ]
+
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: ''
+                }
+            },
+            plotOptions: {
+                bar: {
+               
+                    allowPointSelect: true,
+                    pointHeight: 52,
+                    cursor: 'pointer',
+
+                },
+                series: {
+                    stacking: 'normal',
+                    borderRadius: 3,
+                   cursor: 'pointer',
+                    point: {
+                        events: {
+                            click: function(event) {
+             console.log(this.url);window.open(this.url,'_self');
+                            }
+                        }
+                    }
+                }
+            },
+            series: [
+            
+            {
+                name: 'Neutral',
+                color: '#f7d009',
+                data: [
+									<%@count=2 
+                  @business_categoryids.each do |business_categoryid|%>
+                 {
+                    y: <%=@smscount[@count]%>,
+                    url: '<%=@baseurl%>/feedbacks/category?&category=<%=business_categoryid%>&feedbacktype=neutral'}, 
+                    <%@count += 3%>  
+                 <% end %>
+					]},
+          
+           
+			
+			{
+                name: 'Negative',
+
+                color: '#f47359',
+                data: [
+                <%@count=1
+                @business_categoryids.each do |business_categoryid|%>
+                {
+                    y: <%=@smscount[@count]%>,
+                    url: '<%=@baseurl%>/feedbacks/category?&category=<%=business_categoryid%>&feedbacktype=negative'},
+					       <%@count += 3%>  
+                 <% end %>
+					
+					]},
+            {
+                name: 'Positive',
+                color: '#3acb3a',
+                data: [
+                <%@count=0
+                @business_categoryids.each do |business_categoryid|%>
+                {
+                    y: <%=@smscount[@count]%>,
+                    url: '<%=@baseurl%>/feedbacks/category?&category=<%=business_categoryid%>&feedbacktype=positive'}, 
+					      <%@count += 3%>  
+                 <% end %>
+
+                ]
+                
+                }]
+
+
+
+        },function(chart){
+       console.log(chart.series[0].data[0].url);
+    });
+    });
+
+}); //ice cream bar end​​
+
+
+$(function() {
+	
+
+		// create the chart
+		chart = new Highcharts.StockChart({
+		    chart: {
+		        renderTo: 'container3',
+		        alignTicks: false, backgroundColor: 'none'
+		    },
+			
+		yAxis: [ {
+                // Primary yAxis
+                min:0,
+                max:100, 
+                labels: {x: -2,
+                    formatter: function() {
+                        return this.value ;
+                    },
+                    style: {
+                        color: '#3E576F'
+                    }
+                },
+                title: {
+                    text: 'Experience Score', margin: 20,
+                    style: {
+                        color: '#4572A7'
+                    }
+                }
+            }, { // Secondary yAxis
+                title: {
+                    text: 'Feedbcaks',
+                    style: {
+                        color: '#4572A7'
+                    }
+                },
+                labels: {x: 7,
+                y: -2,
+                    formatter: function() {
+                        return this.value ;
+                    },
+                    style: {
+                        color: '#3E576F'
+                    }
+                },
+                opposite: true
+            }],
+			
+			/*
+			legend: {
+            enabled: true,
+            align: 'right',
+            backgroundColor: 'none',
+            borderWidth: 1,
+            layout: 'vertical',
+            verticalAlign: 'top',
+            y: -2, 
+            
+        },*/
+			scrollbar: {
+           enabled: true
+        },
+			exporting: {
+                buttons: {
+                    exportButton: {
+                        enabled: false
+                    },
+                    printButton: {
+                        enabled: false
+                    }
+
+                }
+            },
+			
+			navigator: {
+            enabled: false
+        },
+
+		    rangeSelector: {
+		        selected: 0,	inputEnabled:false,
+				buttons: [
+				{
+	type: 'week',
+	count: 1,
+	text: '1wk'
+},{
+	type: 'month',
+	count: 1,
+	text: '1m'
+}, {
+	type: 'month',
+	count: 3,
+	text: '3m'
+}, {
+	type: 'month',
+	count: 6,
+	text: '6m'
+},{
+	type: 'month',
+	count: 12,
+	text: '1yr'
+}]
+				
+		    },
+
+			title: {
+		        text: ''
+		    },
+
+		    series: [{
+		        type: 'column',
+		        name: 'No.of Sms', color:'#999',
+				yAxis: 1,
+		        data: [<%=@smsdataseries%>],
+				
+		        
+		    },
+			
+			   { name : 'Netscore', color:'#4572A7',
+				
+				type:'spline',
+				data:[<%=@netscore_dataseries%>],marker : {
+					enabled : true,
+					radius : 3
+				},
+				
+				shadow : true,
+						
+				
+				} ]
+		});
+	
+});
+
+
+</script>
+
+<p id="spacer"></p>
+<%= link_to ("/dashboard/feedbacks/feedback") do %>
+  <div id="chuma"></div>
+<% end %>
+<div class="back">
+  <h3><b>Net Experience Score: <%=@netscore%></b> <a href="<%=@baseurl%>/feedback" style="text-decoration:none">
+    <div id="container"></div>
+    </a></h3>
+  <table  border="0" class="legendCreate">
+    <tr>
+       <td><img src="<%=@baseurl%>/Images/neut.png" width="15" height="13" alt="Neutral" /></td>
+      <td>Neutral</td>
+      <td><img src="<%=@baseurl%>/Images/negati.png" width="15" height="13" alt="Negative" /></td>
+      <td>Negative</td>
+      <td><img src="<%=@baseurl%>/Images/posi.png" width="15" height="13" alt="positive" /></td>
+      <td>Positive</td>
+    </tr>
+  </table>
+</div>
+<div class="back4">
+  <h3><b>Important categories</b></h3>
+  <div id="container2"></div>
+</div>
+<div class="back2">
+  <h3><b>Frequent wordings</b></h3>
+  <!--TagCloud --><br />
+  <br />
+  <div style="_height:100%; width:90%; background:none;font-family:Arial; text-align:left; margin-left:auto; margin-right:auto; padding-bottom:2%;">
+    <div id="tag" > 
+    	<% count =0
+@repeat_keywords.each do |repeat_key|
+	
+	
+	averagesentiment = repeat_key.score.to_f/repeat_key.count
+	%>	
+	
+<a href="<%=@baseurl%>/feedbacks/frequentwords?&keyword=<%=repeat_key.text%>" style="text-decoration:none; color: <% if averagesentiment >0 and averagesentiment <=35 %>#f47359<%elsif averagesentiment > 26 and averagesentiment <=60 %>#f7d009<%else%>#3acb3a<%end%>;" class="<%if count < 2%>larger<%elsif count>2 and count <4%>large<%elsif count>4 and count <6 %>medium<%elsif count>6 and count<8%>small<%else%>smaller<%end%>" ><%=repeat_key.text%></a>  
+<%count += 1%>
+<%end %>
+    	
+    	
+    	   </div>
+  </div>
+  <br />
+  <br />
+   <table  border="0" class="legendCreate2">
+    <tr>
+       <td><img src="<%=@baseurl%>/Images/neut.png" width="15" height="13" alt="Neutral" /></td>
+      <td>Neutral</td>
+      <td><img src="<%=@baseurl%>/Images/negati.png" width="15" height="13" alt="Negative" /></td>
+      <td>Negative</td>
+      <td><img src="<%=@baseurl%>/Images/posi.png" width="15" height="13" alt="positive" /></td>
+      <td>Positive</td>
+    </tr>
+  </table>
+  
+  <!--TagCloud end--> 
+</div>
+<div class="back3">
+  <h3><b>Experience Score Tracker</b></h3>
+  <div id="container3"></div> <table  border="0" class="legendCreate3">
+    <tr>
+      
+       
+      <td><img src="<%=@baseurl%>/Images/product.png" width="15" height="13" alt="product" /></td>
+      <td>Overll Netscore</td>
+      <td><img src="<%=@baseurl%>/Images/Noofsms.png" width="15" height="13" alt="Netscore" /></td>
+      <td>No.of SMSes</td>
+    </tr>
+  </table>
+</div>
+<div id="footer"> <img src="<%=@baseurl%>/Images/line.jpg" id="baseline" />
+  <ul>
+    <li>&copy; Copyright 2012 ShopperSays.com</li>
+  </ul>
+</div>

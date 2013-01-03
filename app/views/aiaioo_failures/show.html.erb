@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Source number:</b>
+  <%= @aiaioo_failure.source_number %>
+</p>
+
+<p>
+  <b>Text:</b>
+  <%= @aiaioo_failure.text %>
+</p>
+
+<p>
+  <b>Retried:</b>
+  <%= @aiaioo_failure.retried %>
+</p>
+
+
+<%= link_to 'Edit', edit_aiaioo_failure_path(@aiaioo_failure) %> |
+<%= link_to 'Back', aiaioo_failures_path %>

@@ -1,0 +1,25 @@
+<%= form_for(@sms_lingo) do |f| %>
+  <% if @sms_lingo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sms_lingo.errors.count, "error") %> prohibited this sms_lingo from being saved:</h2>
+
+      <ul>
+      <% @sms_lingo.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sms_word %><br />
+    <%= f.text_field :sms_word %>
+  </div>
+  <div class="field">
+    <%= f.label :english_text %><br />
+    <%= f.text_field :english_text %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Sms word:</b>
+  <%= @sms_lingo.sms_word %>
+</p>
+
+<p>
+  <b>English text:</b>
+  <%= @sms_lingo.english_text %>
+</p>
+
+
+<%= link_to 'Edit', edit_sms_lingo_path(@sms_lingo) %> |
+<%= link_to 'Back', sms_lingos_path %>

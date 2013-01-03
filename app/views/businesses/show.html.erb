@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  <b>Name:</b>
+  <%= @business.name %>
+</p>
+
+<p>
+  <b>Login ID:</b>
+  <%= @business.login_id %>
+</p>
+
+<p>
+  <b>Need SMS alerts? </b>
+  <%= @business.sms_alerts %>
+</p>
+
+<p>
+  <b>Unicel Virtual Number </b>
+  <%= @business.unicel_vnumber %>
+</p>
+
+<p>
+  <b>Need mcoupon?</b>
+  <%= @business.mcoupon %>
+</p>
+
+<%= link_to 'Edit', edit_business_path(@business) %> |
+<%= link_to 'Back', businesses_path %>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+ <!--[if IE 8]>
+<script type="text/javascript">window.location = "redirect.html";
+</script><![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+     <meta charset="UTF-8" />
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+        <link rel="stylesheet" type="text/css" href="csslogin/demo.css" />
+        <link rel="stylesheet" type="text/css" href="csslogin/style.css" />
+		<link rel="stylesheet" type="text/css" href="csslogin/animate-custom.css" />
+        
+        <title>Login</title>
+        <!--Loading animation css and javascript-->
+<style> 
+
+    #siteDetailLoader{ position:absolute; z-index:5000; left: 3%; top:50%; font-family:calibri; font-size:16px; font-weight:                                       600;   }
+    #siteLoader{width:100%; height:100%; position:absolute; z-index:6000; background:none; visibility:hidden;  }
+</style>
+<script>
+  $(document).ready(function() {
+var ua = $.browser;
+  if ( ua.mozilla && ua.version.slice(0,3) <= "7.0" ) {
+   window.location.href="redirect.html"
+  }
+ 
+});
+
+  </script>
+<script>
+  $(document).ready(function() {
+    $('#loader' ).click(function(){
+		
+      $('#login').animate({'height':'-=250px'}, 1500);
+	  $('#login p').hide(1000)
+	  $('#siteLoader').css('visibility','visible')
+      
+      }); 
+	  
+	  
+  });
+
+</script>
+
+
+
+
+<!--Loading animation css and javascript-->
+        <script>
+       
+        
+		$(document).ready(function() {
+			
+			function getUrlVars()
+		{
+    		var vars = [], hash;
+    		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    		for(var i = 0; i < hashes.length; i++)
+    	{
+        	hash = hashes[i].split('=');
+        	vars.push(hash[0]);
+        	vars[hash[0]] = hash[1];
+    	}
+    	return vars;
+		}
+		
+		var message = getUrlVars()["invalidpwd"];
+		if (message != null){
+			$("#errormsg").css('visibility','visible');
+		
+			$("#errormsg").p.html("<p>Invalid Username or Password, try again!</p>");
+		}
+		
+		var logoutmessage = getUrlVars()["logout"];
+		if (logoutmessage != null){
+			$("#errormsg").css('visibility','visible');
+			$("#errormsg").html("<p>You have been logged out!</p>");
+		}
+				
+		
+    });
+
+        </script>
+       
+    </head>
+    <body background="Images/login.jpg">
+    	<div id="errormsg"><p>Invalid Username or Password, try again!</p></div>
+        <div class="container">
+   <img src="http://202.0.103.38/dashboard/Images/heartbeatlogo.png"  alt="Logo" id="logo">
+<section>				
+      <div id="container_demo" >
+                    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                         <div id='siteLoader' > 
+        <div id='siteDetailLoader'> 
+        <table>
+        <tr><td><img src="assets/loading.gif" /></td><td>Logging in, this might take a few seconds..</td></tr></table> 
+        </div> 
+      </div> 
+                            <form accept-charset="UTF-8" action="/dashboard/session/new" method="post">
+                                <h1>Log in</h1> 
+                                <p> 
+                                    <label for="username" class="uname" data-icon="u" > Your email or username </label>
+                                    <input id="login_id" name="login_id" placeholder="your_id" />
+                                </p>
+                                <p> 
+                                    <label for="password" class="youpasswd" data-icon="p"> Your password </label>
+                                    <input id="password" type="password" name="password"  placeholder="*********" /> 
+                                </p>
+                                <p class="keeplogin"> 
+									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
+									<label for="loginkeeping">Keep me logged in</label>
+								</p>
+                                <p class="login button"> 
+                                    <input type="submit" value="Login" id="loader" /> 
+								</p>
+                                <p class="change_link">
+									
+									
+								</p>
+                            </form>
+                        </div>
+
+                        
+						
+                    </div>
+                </div>  
+            </section>
+        </div>
+    </body>
+</html>

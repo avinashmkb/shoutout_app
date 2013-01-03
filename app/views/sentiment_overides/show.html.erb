@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Text:</b>
+  <%= @sentiment_overide.text %>
+</p>
+
+<p>
+  <b>Sentiment:</b>
+  <%= @sentiment_overide.sentiment_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_sentiment_overide_path(@sentiment_overide) %> |
+<%= link_to 'Back', sentiment_overides_path %>

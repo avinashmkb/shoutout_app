@@ -1,0 +1,23 @@
+<h1>Listing smsalert_checks</h1>
+
+<table>
+  <tr>
+    <th>Allowed keyword</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @smsalert_checks.each do |smsalert_check| %>
+  <tr>
+    <td><%= smsalert_check.allowed_keyword %></td>
+    <td><%= link_to 'Show', smsalert_check %></td>
+    <td><%= link_to 'Edit', edit_smsalert_check_path(smsalert_check) %></td>
+    <td><%= link_to 'Destroy', smsalert_check, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Smsalert check', new_smsalert_check_path %>
